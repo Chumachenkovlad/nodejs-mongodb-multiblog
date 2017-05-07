@@ -8,7 +8,12 @@ const UserSchema = new Schema({
         lowercase: true,
         index: true
     },
-    password: String
+    password: String,
+    name: {
+        type: String,
+        index: true
+    },
+
 });
 
 UserSchema.pre('save', async function (next) {
@@ -17,7 +22,7 @@ UserSchema.pre('save', async function (next) {
     }
 
     const salt = await bcrypt.genSalt(10);
-    const hash = await bcrypt.hash(this.password, salt)
+    const hash = await bcrypt.hash(this.password, salt);
     this.password = hash;
     next();
 });
