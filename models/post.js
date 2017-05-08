@@ -32,4 +32,5 @@ var PostSchema = new Schema({
     }
 })
     .index({title: 'text', body: 'text'});
+
 export default mongoose.model('Post', PostSchema);
